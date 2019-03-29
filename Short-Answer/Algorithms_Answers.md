@@ -84,11 +84,13 @@ For i floors in n:
 1) Then, check middle_check against our drop_egg function
 
 2a) If the function returns False, as in, the egg breaks and the floor is unsafe for eggs,
-then we know that our `last_safe_floor` is going to be on the lower half of the array, and so we need to traverse the lower floors.
+then we know that our `last_safe_floor` is going to be on the lower half of the array,
+and so we need to traverse the lower floors.
 So, we remove the RHS of the array, and then take a new midpoint of the new, truncated array.
 
-2b) However, if the function returns True, as in the egg is safe (yippee), we are not done yet. We now need to go through the
-upper half of the array from that midpoint, so we elliminate the LHS of the array, or the lower floors, and then take the midpoint of the
+2b) However, if the function returns True, as in the egg is safe (yippee), we are not done yet.
+We now need to go through the upper half of the array from that midpoint, so we elliminate
+the LHS of the array, or the lower floors, and then take the midpoint of the
 remaining array.
 
 3) Keep doing the above until we get the `last_safe_floor`, which we `return` as our answer.
