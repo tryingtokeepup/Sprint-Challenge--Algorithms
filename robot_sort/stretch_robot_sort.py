@@ -1,54 +1,5 @@
-
-# You have been given a robot with very basic capabilities:
-
-# It can move left or right.
-# It can pick up an item
-# If it tries to pick up an item while already holding one, it will swap the items instead.
-# It can compare the item it's holding to the item in front of it.
-# It can switch a light on its head on or off.
-# Your task is to program this robot to sort lists using ONLY these abilities.
-
-# Rules
-# Inside the Robot_Sort directory you'll find the robot_sort.py file. Open it up and read through each of the robot's abilities.
-# Once you've understood those, start filling out the sort() method following these rules:
-
-# You may use any pre-defined robot methods.
-# You may NOT modify any pre-defined robot methods.
-# You may use logical operators. (if, and, or, not, etc.)
-# You may use comparison operators. ( > , >= , < , <= , == , is, etc.)
-# You may use iterators. (while, for, break, continue)
-# You may NOT store any variables. (=)
-# You may NOT access any instance variables directly. (self._anything)
-# You may NOT use any Python libraries or class methods. (sorted(), etc.)
-# You may define robot helper methods, as long as they follow all the rules.
-
-# Make sure you understand the problem and all of the rules! A solution that breaks the rules will receive no credit.
-
-# If you're unsure if an operator or method is allowed, ask.
-
-# Lay out some numbered cards in a line and try sorting them as if you were the robot.
-
-# Come up with a plan and write out your algorithm before coding. If your plan is sound but you don't reach a working implementation in three hours, you may receive partial credit.
-
-# There is no efficiency requirement but you may lose points for an unreasonably slow solution. Tests should run in far less than 1 second.
-
-# We discussed a sorting method this week that might be useful. Which one?
-
-# The robot has exactly one bit of memory: its light. Why is this important?
-
-# Algorithim plan:
-# The algorithim necessary for this challenge seems closest to the bubble-sort algorithim. We need the light as a store for our binary
-# operator, sort_occured, which will keep the robot sorting through the array until we have successfully sorted through the whole array
-# We start the robot with the light on. Then, we enter the loop, and then immediately turn the light off, so if there are no swaps
-# during the current traversal of the array, it stays off, and can exit the loop after its current iteration.
-# We then have the robot go through the array from the left side, comparing the item on its left
-# to the item on its right. If the item on the left is greater than the right, we swap, AND we turn on the `swap` light, if its not on.
-# Then we move the robot to the right, and continue the process until we hit len(array - 2), or the the index right before the last index.
-# Compare, swap if necessary, and then continue the loop if and ONLY if the swap light is on.
-# If all goes well, after the last loop through the array, it will exit the loop and return the sorted array.
-# So, that's the plan. Let's try it out!
-
-# EDIT: oh man, i had to figure out that we need to drop the item back into the index behind. wow.
+# going to try a better implementation
+# starting again.
 
 
 class SortingRobot:
@@ -154,20 +105,20 @@ class SortingRobot:
         # Fill this out
         # we only want to run this while the light is on
         self.set_light_on()
-        # print(f"Check light before starting loop: light is on:",
-        #   self.light_is_on())  # False
+        print(f"Check light before starting loop: light is on:",
+              self.light_is_on())  # False
         while self.light_is_on() is True:
             # turn off the light so that if we are all sorted by the end, we can exit the loop
             self.set_light_off()
-            # print(f"Check light before starting traversal: light is on:",
-            #   self.light_is_on()),
+            print(f"Check light before starting traversal: light is on:",
+                  self.light_is_on()),
 
             # we need to check if we are at the beginning of the array, if we cant move any more left, we are at the beginning
             while self.can_move_right() is True:
 
                 # we need to get the item
                 self.swap_item()
-                # print(f"what item?:", self._item)
+                print(f"what item?:", self._item)
                 # now move to the next index, and start the comparison loops
                 self.move_right()
                 # we need to compare the item we have with the next item
@@ -185,8 +136,7 @@ class SortingRobot:
                     # now move right
                     self.move_right()
                 else:
-                    # WE HAVE TO GO BACK OH GOD WE HAVE TO GO BACK
-
+                    # do the same as -1, just put the thing back after going back.
                     self.move_left()
                     # drop it off. revert timeline. restart continunity
                     self.swap_item()
