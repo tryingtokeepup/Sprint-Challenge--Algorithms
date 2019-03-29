@@ -151,14 +151,48 @@ class SortingRobot:
         """
         # Fill this out
         # we only want to run this while the light is on
-        while self.light_is_on is True:
+        self.set_light_on()
+
+        while self.light_is_on() is True:
+            # turn off the light so that if we are all sorted by the end, we can exit the loop
+            self.set_light_off()
             # we need to check if we are at the beginning of the array, if we cant move any more left, we are at the beginning
-            if self.can_move_left is False:
-                # turn off the light so that if we are all sorted by the end, we can exit the loop
-                self.set_light_off()
-                # we need to get the item at index 0, so call the swap now
+            while self.can_move_right is True:
+
+                # we need to get the item
                 self.swap_item()
-                #
+                # now move to the next index, and start the comparison loops
+                self.move_right()
+                # we need to compare the item we have with the next item
+                # we need three conditions
+                if self.compare_item() == -1:
+                    # WE HAVE TO GO BACK OH GOD WE HAVE TO GO BACK
+                    self.move_left()
+                    # drop it off. revert timeline. restart continunity
+                    self.swap_item()
+                    # now i have none
+                    self.move_right()
+                elif self.compare_item() == 1:
+                    # okay, we are larger, pick it up
+                    self.swap_item()
+                    # move back left and drop it off
+                    self.move_left()
+                    # drop that sucker
+                    self.swap_item()
+                    # now turn on the red lantern.
+                    self.set_light_on()
+                    # now move right
+                    self.move_right()
+                elif self.compare_item() == 0:
+                    # do the same as -1, just put the thing back after going back.
+                    self.move_left()
+                    # drop it off. revert timeline. restart continunity
+                    self.swap_item()
+                    # now i have none
+                    self.move_right()
+            if self.light_is_on() == True and self.can_move_right == False:
+                while self.can_move_left == True:
+                    self.move_left()
 
 
 if __name__ == "__main__":

@@ -97,4 +97,6 @@ remaining array.
 
 4) Celebration dance!
 
+5) Time complexity of ... O(log n)
+
 ```
