@@ -172,7 +172,7 @@ class SortingRobot:
                 self.move_right()
                 # we need to compare the item we have with the next item
                 # we need three conditions
-
+                # THIS IS THE SWAPPING MECHANISM! ITS THE ONLY THING THAt CAN TURN THE LIGHT ON
                 if self.compare_item() == 1:
                     # okay, we are larger, pick it up
                     self.swap_item()
@@ -181,9 +181,11 @@ class SortingRobot:
                     # drop that sucker
                     self.swap_item()
                     # now turn on the red lantern.
+                    # this is a boolean indicator to indicate that i want to continue the while loop
                     self.set_light_on()
                     # now move right
                     self.move_right()
+                ####################################################
                 else:
                     # WE HAVE TO GO BACK OH GOD WE HAVE TO GO BACK
 
@@ -195,9 +197,42 @@ class SortingRobot:
             if self.light_is_on() is True and self.can_move_right() is False:
                 while self.can_move_left() == True:
                     self.move_left()
+    # okay, run time is terrible terrible. how do i improve?
+    # we used bubble_sort, so time to use selection
+
+    # def selection_sort(self):
+    #     """
+    #     Sort the robot's list.
+    #     """
+    #     self.set_light_on()
+    #     # print(f"Check light before starting loop: light is on:",
+    #     #   self.light_is_on())  # False
+    #     while self.light_is_on() is True:
+    #         # turn off the light so that if we are all sorted by the end, we can exit the loop
+    #         self.set_light_off()
+    #         # let's pick up the first element
+    #         while self.can_move_right()
+    #         # we need to figure out how to only take the lowest integer on every pass
+        # erick todd's brilliant stuff
+
+        # while self.can_move_right():
+        #     if self.compare_item() == -1 or self.compare_item() is None:
+        #         self.swap_item()
+        #         self.move_right()
+        #     else:
+        #         self.move_right()
+
+        # while self.can_move_left():
+        #     if self.compare_item() == 1:
+        #         self.swap_item()
+        #         self.move_left()
+        #     else:
+        #         self.move_left()
+
+        # if self._item is not None:
+        #     self.sort()
 
 
-# okay, run time is terrible terrible. how do i improve?
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
